@@ -3,19 +3,11 @@ import { useLocation } from 'wouter';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTheme } from '@/components/ui/theme-provider';
 import { Button } from '@/components/ui/button';
-<<<<<<< HEAD
-import { Input } from '@/components/ui/input';
-=======
->>>>>>> origin/main
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
-<<<<<<< HEAD
-import { LogOut, Users, MessageSquare, FolderOpen, FileText, Award, BarChart3, User, Briefcase, Code, ShieldCheck, Sun, Moon, Search, X } from 'lucide-react';
-=======
 import { LogOut, Users, MessageSquare, FolderOpen, FileText, Award, BarChart3, User, Briefcase, Code, ShieldCheck, Sun, Moon } from 'lucide-react';
->>>>>>> origin/main
 
 interface DashboardStats {
   projects_count: number;
@@ -48,11 +40,6 @@ export default function AdminDashboard() {
   const { theme, setTheme } = useTheme();
   const queryClient = useQueryClient();
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-<<<<<<< HEAD
-  const [searchQuery, setSearchQuery] = useState('');
-  const [userSearchQuery, setUserSearchQuery] = useState('');
-=======
->>>>>>> origin/main
 
   useEffect(() => {
     // Check if user is logged in and is admin
@@ -92,11 +79,7 @@ export default function AdminDashboard() {
     enabled: !!currentUser,
   });
 
-<<<<<<< HEAD
-  const { data: users = [], isLoading: usersLoading } = useQuery({
-=======
   const { data: users, isLoading: usersLoading } = useQuery({
->>>>>>> origin/main
     queryKey: ['/api/admin/users'],
     queryFn: async (): Promise<User[]> => {
       const token = localStorage.getItem('token');
@@ -110,23 +93,7 @@ export default function AdminDashboard() {
     enabled: !!currentUser,
   });
 
-<<<<<<< HEAD
-  // Filter users based on search query
-  const filteredUsers = users.filter(user => {
-    if (!userSearchQuery.trim()) return true;
-    const query = userSearchQuery.toLowerCase();
-    const joinDate = new Date(user.created_at).toLocaleDateString().toLowerCase();
-    return (
-      user.username?.toLowerCase().includes(query) ||
-      user.email?.toLowerCase().includes(query) ||
-      joinDate.includes(query)
-    );
-  });
-
-  const { data: messages = [], isLoading: messagesLoading } = useQuery({
-=======
   const { data: messages, isLoading: messagesLoading } = useQuery({
->>>>>>> origin/main
     queryKey: ['/api/contact/admin/messages'],
     queryFn: async (): Promise<ContactMessage[]> => {
       const token = localStorage.getItem('token');
@@ -140,20 +107,6 @@ export default function AdminDashboard() {
     enabled: !!currentUser,
   });
 
-<<<<<<< HEAD
-  // Filter messages based on search query
-  const filteredMessages = messages.filter(message => {
-    if (!searchQuery.trim()) return true;
-    const query = searchQuery.toLowerCase();
-    return (
-      message.subject?.toLowerCase().includes(query) ||
-      message.name?.toLowerCase().includes(query) ||
-      message.email?.toLowerCase().includes(query)
-    );
-  });
-
-=======
->>>>>>> origin/main
   const toggleAdminMutation = useMutation({
     mutationFn: async (userId: number) => {
       const token = localStorage.getItem('token');
@@ -355,33 +308,6 @@ export default function AdminDashboard() {
               </div>
 
               <Card className="shadow-lg dark:shadow-none">
-<<<<<<< HEAD
-                <CardHeader className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
-                  <div>
-                    <CardTitle>Users</CardTitle>
-                    <CardDescription>Manage user accounts and permissions</CardDescription>
-                  </div>
-                  <div className="relative w-full sm:w-80">
-                    <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                    <Input
-                      type="text"
-                      placeholder="Search users..."
-                      className="pl-10 pr-10 w-full"
-                      value={userSearchQuery}
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUserSearchQuery(e.target.value)}
-                    />
-                    {userSearchQuery && (
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
-                        onClick={() => setUserSearchQuery('')}
-                      >
-                        <X className="h-4 w-4 text-muted-foreground" />
-                      </Button>
-                    )}
-                  </div>
-=======
                 <CardHeader className="bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800 rounded-t">
                   <CardTitle className="flex items-center gap-2 text-gray-900 dark:text-gray-100">
                     <Users className="h-5 w-5 text-indigo-500 dark:text-indigo-300" />
@@ -390,7 +316,6 @@ export default function AdminDashboard() {
                   <CardDescription className="text-muted-foreground dark:text-gray-300">
                     View and manage user roles and permissions
                   </CardDescription>
->>>>>>> origin/main
                 </CardHeader>
                 <CardContent className="p-6">
                   {usersLoading ? (
@@ -400,27 +325,7 @@ export default function AdminDashboard() {
                     </div>
                   ) : (
                     <div className="space-y-4">
-<<<<<<< HEAD
-                      {filteredUsers.length === 0 ? (
-                        <div className="flex flex-col items-center justify-center py-12 text-center">
-                          <Search className="h-12 w-12 text-muted-foreground mb-4" />
-                          <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
-                            {userSearchQuery ? 'No matching users found' : 'No users found'}
-                          </h3>
-                          <p className="text-sm text-muted-foreground dark:text-gray-400 mt-1">
-                            {userSearchQuery ? 'Try adjusting your search or filter to find what you\'re looking for.' : 'There are no users to display.'}
-                          </p>
-                        </div>
-                      ) : (
-                        <div className="text-sm text-muted-foreground dark:text-gray-400 mb-2">
-                          Showing {filteredUsers.length} {filteredUsers.length === 1 ? 'user' : 'users'}
-                          {userSearchQuery && ` matching "${userSearchQuery}"`}
-                        </div>
-                      )}
-                      {filteredUsers.map((user) => (
-=======
                       {users?.map((user) => (
->>>>>>> origin/main
                         <div
                           key={user.id}
                           className="flex flex-col sm:flex-row sm:items-center justify-between p-4 border rounded-lg hover:shadow-md transition-shadow bg-gradient-to-r from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 space-y-3 sm:space-y-0"
@@ -478,44 +383,6 @@ export default function AdminDashboard() {
 
               <Card className="shadow-lg dark:shadow-none">
                 <CardHeader className="bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800 rounded-t">
-<<<<<<< HEAD
-                  <div className="flex flex-col space-y-4">
-                    <div className="flex items-center justify-between">
-                      <CardTitle className="flex items-center gap-2 text-gray-900 dark:text-gray-100">
-                        <MessageSquare className="h-5 w-5 text-orange-500 dark:text-orange-300" />
-                        Messages ({filteredMessages.length})
-                      </CardTitle>
-                      <div className="relative w-full max-w-md">
-                        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-                        <Input
-                          type="text"
-                          placeholder="Search by subject, name, or email..."
-                          className="pl-10 pr-10 w-full"
-                          value={searchQuery}
-                          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
-                        />
-                        {searchQuery && (
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            className="absolute right-0 top-1/2 h-8 w-8 -translate-y-1/2 rounded-full"
-                            onClick={() => setSearchQuery('')}
-                          >
-                            <X className="h-4 w-4" />
-                            <span className="sr-only">Clear search</span>
-                          </Button>
-                        )}
-                      </div>
-                    </div>
-                    <CardDescription className="text-muted-foreground dark:text-gray-300">
-                      {searchQuery ? (
-                        <span>Showing {filteredMessages.length} messages matching "{searchQuery}"</span>
-                      ) : (
-                        'Review and respond to contact inquiries'
-                      )}
-                    </CardDescription>
-                  </div>
-=======
                   <CardTitle className="flex items-center gap-2 text-gray-900 dark:text-gray-100">
                     <MessageSquare className="h-5 w-5 text-orange-500 dark:text-orange-300" />
                     Messages ({messages?.length || 0})
@@ -523,7 +390,6 @@ export default function AdminDashboard() {
                   <CardDescription className="text-muted-foreground dark:text-gray-300">
                     Review and respond to contact inquiries
                   </CardDescription>
->>>>>>> origin/main
                 </CardHeader>
                 <CardContent className="p-6">
                   {messagesLoading ? (
@@ -531,18 +397,6 @@ export default function AdminDashboard() {
                       <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-600 dark:border-orange-300"></div>
                       <span className="ml-2 text-muted-foreground dark:text-gray-300">Loading messages...</span>
                     </div>
-<<<<<<< HEAD
-                  ) : filteredMessages.length === 0 ? (
-                    <div className="text-center py-8">
-                      <Search className="h-12 w-12 text-muted-foreground dark:text-gray-400 mx-auto mb-4" />
-                      <p className="text-muted-foreground dark:text-gray-300">
-                        {searchQuery
-                          ? `No messages found matching "${searchQuery}"`
-                          : 'No messages available'}
-                      </p>
-                    </div>
-=======
->>>>>>> origin/main
                   ) : messages?.length === 0 ? (
                     <div className="text-center py-8">
                       <MessageSquare className="h-12 w-12 text-muted-foreground dark:text-gray-400 mx-auto mb-4" />
@@ -550,11 +404,7 @@ export default function AdminDashboard() {
                     </div>
                   ) : (
                     <div className="space-y-4">
-<<<<<<< HEAD
-                      {filteredMessages.map((message) => (
-=======
                       {messages?.map((message) => (
->>>>>>> origin/main
                         <div
                           key={message.id}
                           className="p-4 sm:p-6 border rounded-lg hover:shadow-md transition-shadow bg-gradient-to-r from-gray-50 to-white dark:from-gray-800 dark:to-gray-900"

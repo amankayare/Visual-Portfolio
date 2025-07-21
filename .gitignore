@@ -15,10 +15,6 @@ __pycache__/
 build/
 develop-eggs/
 dist/
-<<<<<<< HEAD
-client/dist/
-=======
->>>>>>> origin/main
 downloads/
 eggs/
 .eggs/
@@ -28,10 +24,6 @@ parts/
 sdist/
 var/
 wheels/
-<<<<<<< HEAD
-.client_build/
-=======
->>>>>>> origin/main
 *.egg-info/
 .installed.cfg
 *.egg

@@ -1,10 +1,6 @@
 # Visual Portfolio
 
-<<<<<<< HEAD
-A modern, responsive portfolio website with an admin dashboard for content management. Built with React, TypeScript, Vite, sqlite and Flask. 
-=======
 A modern, responsive portfolio website with an admin dashboard for content management. Built with React, TypeScript, Vite, and Flask.
->>>>>>> origin/main
 
 ## 🌟 Features
 
@@ -33,11 +29,8 @@ A modern, responsive portfolio website with an admin dashboard for content manag
 ### Backend (Python + Flask)
 - **RESTful API**
   - JWT Authentication
-<<<<<<< HEAD
-=======
   - Rate limiting
   - CORS support
->>>>>>> origin/main
   - Request validation
 
 - **Database Models**
@@ -74,10 +67,7 @@ A modern, responsive portfolio website with an admin dashboard for content manag
 - **API Documentation**: Flasgger (Swagger)
 - **Validation**: Marshmallow
 - **File Handling**: Flask-Uploads
-<<<<<<< HEAD
-=======
 - **Security**: Flask-CORS, Flask-Talisman
->>>>>>> origin/main
 
 ## 🚀 Getting Started
 
@@ -89,15 +79,11 @@ A modern, responsive portfolio website with an admin dashboard for content manag
 
 ### Installation
 
-<<<<<<< HEAD
-
-=======
 1. **Clone the repository**
    ```bash
    git clone https://github.com/yourusername/visual-portfolio.git
    cd visual-portfolio
    ```
->>>>>>> origin/main
 
 2. **Set up the backend**
    ```bash
@@ -177,10 +163,6 @@ visual-portfolio/
 - **Authentication**: JWT-based authentication
 - **Authorization**: Role-based access control (admin/user)
 - **Input Validation**: Server-side validation for all inputs
-<<<<<<< HEAD
-- **Security Headers**: Added for enhanced security
-
-=======
 - **CORS**: Configured to allow requests only from trusted origins
 - **Rate Limiting**: Implemented on authentication endpoints
 - **Security Headers**: Added for enhanced security
@@ -198,7 +180,6 @@ npm test
 cd server/VisualPortfolioServer
 pytest
 ```
->>>>>>> origin/main
 
 ## 🚀 Deployment
 
@@ -219,11 +200,6 @@ pytest
    SECRET_KEY=your-production-secret
    JWT_SECRET_KEY=your-jwt-secret
    ```
-<<<<<<< HEAD
-
-
-
-=======
 3. Deploy to your preferred platform (Render, Railway, Heroku, etc.)
 
 ## 📝 License
@@ -243,4 +219,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Your Name - your.email@example.com
 
 Project Link: [https://github.com/yourusername/visual-portfolio](https://github.com/yourusername/visual-portfolio)
->>>>>>> origin/main
